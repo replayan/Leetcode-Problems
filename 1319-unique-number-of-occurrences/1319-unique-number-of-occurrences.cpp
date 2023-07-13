@@ -1,18 +1,19 @@
 class Solution {
 public:
     bool uniqueOccurrences(vector<int>& arr) {
-        unordered_map<int, int> mp;
+        std::unordered_map<int, int> frequencyMap;
         
-        for(int i = 0; i < arr.size(); i++){
-            mp[arr[i]]++;
+        for (int i = 0; i < arr.size(); i++) {
+            frequencyMap[arr[i]]++;
         }
         
-        unordered_set<int> st;
+        std::unordered_set<int> uniqueFrequencies;
         
-        for(auto x : mp){
-            st.insert(x.second);
+        for (const auto& pair : frequencyMap) {
+            if (!uniqueFrequencies.insert(pair.second).second) {
+                return false;
+            }
         }
-        
-        return st.size() == mp.size();
+        return true;   
     }
 };
