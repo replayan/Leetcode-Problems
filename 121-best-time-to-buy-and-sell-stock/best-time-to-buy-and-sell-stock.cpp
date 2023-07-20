@@ -5,10 +5,15 @@ public:
         int minPrice = INT_MAX;
 
         for (int price : prices) {
-            minPrice = min(minPrice, price);
-            maxProfit = max(maxProfit, price - minPrice);
+            if (price < minPrice) {
+                minPrice = price;
+            } else {
+                int profit = price - minPrice;
+                if (profit > maxProfit) {
+                    maxProfit = profit;
+                }
+            }
         }
-
         return maxProfit;
     }
 };
