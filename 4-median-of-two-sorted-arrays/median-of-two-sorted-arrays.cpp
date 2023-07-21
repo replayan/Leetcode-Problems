@@ -1,14 +1,37 @@
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-        vector<int> merged;
-        merge(nums1.begin(), nums1.end(), nums2.begin(), nums2.end(), back_inserter(merged));
-
-        int size = merged.size();
-        if (size % 2 == 0) {
-            return (static_cast<double>(merged[size / 2 - 1]) + static_cast<double>(merged[size / 2])) / 2.0;
-        } else {
-            return static_cast<double>(merged[size / 2]);
+        if (nums1.size() > nums2.size()) {
+            return findMedianSortedArrays(nums2, nums1);
         }
+
+        int m = nums1.size();
+        int n = nums2.size();
+        int left = 0;
+        int right = m;
+
+        while (left <= right) {
+            int partitionX = (left + right) / 2;
+            int partitionY = (m + n + 1) / 2 - partitionX;
+
+            int maxX = (partitionX == 0) ? INT_MIN : nums1[partitionX - 1];
+            int minX = (partitionX == m) ? INT_MAX : nums1[partitionX];
+            int maxY = (partitionY == 0) ? INT_MIN : nums2[partitionY - 1];
+            int minY = (partitionY == n) ? INT_MAX : nums2[partitionY];
+
+            if (maxX <= minY && maxY <= minX) {
+                if ((m + n) % 2 == 0) {
+                    return (max(maxX, maxY) + min(minX, minY)) / 2.0;
+                } else {
+                    return max(maxX, maxY);
+                }
+            } else if (maxX > minY) {
+                right = partitionX - 1;
+            } else {
+                left = partitionX + 1;
+            }
+        }
+
+        throw runtime_error("Input arrays are not sorted.");
     }
 };
