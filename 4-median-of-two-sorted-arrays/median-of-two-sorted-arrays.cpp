@@ -1,37 +1,37 @@
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-        if (nums1.size() > nums2.size()) {
-            return findMedianSortedArrays(nums2, nums1);
-        }
-
         int m = nums1.size();
         int n = nums2.size();
-        int left = 0;
-        int right = m;
+        int totalSize = m + n;
+        int midIndex = totalSize / 2;
+        int i = 0, j = 0;
+        vector<int> merged;
 
-        while (left <= right) {
-            int partitionX = (left + right) / 2;
-            int partitionY = (m + n + 1) / 2 - partitionX;
-
-            int maxX = (partitionX == 0) ? INT_MIN : nums1[partitionX - 1];
-            int minX = (partitionX == m) ? INT_MAX : nums1[partitionX];
-            int maxY = (partitionY == 0) ? INT_MIN : nums2[partitionY - 1];
-            int minY = (partitionY == n) ? INT_MAX : nums2[partitionY];
-
-            if (maxX <= minY && maxY <= minX) {
-                if ((m + n) % 2 == 0) {
-                    return (max(maxX, maxY) + min(minX, minY)) / 2.0;
-                } else {
-                    return max(maxX, maxY);
-                }
-            } else if (maxX > minY) {
-                right = partitionX - 1;
+        while (i < m && j < n) {
+            if (nums1[i] <= nums2[j]) {
+                merged.push_back(nums1[i]);
+                i++;
             } else {
-                left = partitionX + 1;
+                merged.push_back(nums2[j]);
+                j++;
             }
         }
 
-        throw runtime_error("Input arrays are not sorted.");
+        while (i < m) {
+            merged.push_back(nums1[i]);
+            i++;
+        }
+
+        while (j < n) {
+            merged.push_back(nums2[j]);
+            j++;
+        }
+
+        if (totalSize % 2 == 0) {
+            return (static_cast<double>(merged[midIndex - 1]) + static_cast<double>(merged[midIndex])) / 2.0;
+        } else {
+            return static_cast<double>(merged[midIndex]);
+        }
     }
 };
