@@ -18,14 +18,14 @@ class Solution {
             }
         }
         
-        int majorityCount = 0;
+        int majorityElementCount = 0;
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] == majorityElement) {
-                majorityCount++;
+                majorityElementCount++;
             }
         }
         
-        if (majorityCount > nums.length / 2) {
+        if (majorityElementCount > nums.length / 2) {
             return majorityElement;
         } else {
             return -1;
