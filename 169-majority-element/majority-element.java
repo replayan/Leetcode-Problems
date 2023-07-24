@@ -1,33 +1,22 @@
-// variation of the Boyer-Moore Majority Vote algorithm
+// BRUTE FORCE APPROACH
+// TC: O(N^2)
 
 class Solution {
     public int majorityElement(int[] nums) {
-        int candidate = 0;
-        int count = 0;
+        int majorityCount = nums.length / 2;
         
         for (int i = 0; i < nums.length; i++) {
             int num = nums[i];
-            if (count == 0) {
-                candidate = num;
-                count = 1;
-            } else if (candidate == num) {
-                count++;
-            } else {
-                count--;
+            int count = 0;
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[j] == num) {
+                    count++;
+                }
+            }
+            if (count > majorityCount) {
+                return num;
             }
         }
-        
-        int majorityCount = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] == candidate) {
-                majorityCount++;
-            }
-        }
-        
-        if (majorityCount > nums.length / 2) {
-            return candidate;
-        } else {
-            return -1;
-        }
+        return -1;
     }
 }
