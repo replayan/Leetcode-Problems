@@ -5,7 +5,8 @@ public:
         int count = 0; // Count of open parentheses encountered
         
         // Iterate through each character in the input string
-        for (char c : s) {
+        for (int i = 0; i < s.length(); i++) {
+            char c = s[i];
             if (c == '(') {
                 // If an opening parenthesis is encountered, increment the count
                 if (count > 0) {
