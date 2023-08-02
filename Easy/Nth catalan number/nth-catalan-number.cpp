@@ -6,30 +6,34 @@ using namespace std;
 
 class Solution {
 public:
-    // Function to find the nth catalan number.
     int findCatalan(int n) {
-        if (n <= 1)
-            return 1;
-
-        // Create a dynamic programming array to store the Catalan numbers.
         int MOD = 1000000007;
-        int catalan[n + 1];
-        catalan[0] = 1;
-        catalan[1] = 1;
 
-        // Calculate Catalan numbers using dynamic programming.
-        for (int i = 2; i <= n; i++) {
-            catalan[i] = 0;
-            for (int j = 0; j < i; j++) {
-                catalan[i] = (catalan[i] + (1LL * catalan[j] * catalan[i - j - 1]) % MOD) % MOD;
-            }
+        long long catalan = 1;
+        for (int i = 0; i < n; i++) {
+            catalan = (catalan * 2 * (2 * i + 1)) % MOD;
+            catalan = (catalan * modInverse(i + 2, MOD)) % MOD;
         }
 
-        // The nth Catalan number modulo MOD will be stored in catalan[n].
-        return catalan[n];
+        return static_cast<int>(catalan);
+    }
+
+private:
+    long long modInverse(long long num, long long mod) {
+        long long result = 1;
+        long long exp = mod - 2;
+
+        while (exp > 0) {
+            if (exp & 1) {
+                result = (result * num) % mod;
+            }
+            num = (num * num) % mod;
+            exp >>= 1;
+        }
+
+        return result;
     }
 };
-
 
 
 //{ Driver Code Starts.
