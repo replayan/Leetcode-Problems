@@ -1,6 +1,7 @@
 class Solution {
 public:
     vector<int> findDisappearedNumbers(vector<int>& nums) {
+        // Use cycle sort
         for (int i = 0; i < nums.size();) {
             int correct = nums[i]-1;
             if (nums[i] != nums[correct]) {
@@ -9,6 +10,7 @@ public:
                 i++;
             }
         }
+        // find missing numbers
         vector<int> disappear;
         for(int i=0; i<nums.size(); ++i){
             if(nums[i] != i+1){
