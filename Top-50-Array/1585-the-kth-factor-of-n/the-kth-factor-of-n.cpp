@@ -1,20 +1,14 @@
-// optimized but takes o(nlogn)
-
 class Solution {
 public:
     int kthFactor(int n, int k) {
-        vector<int> res;
-        for(int i=1; i*i<=n; i++){
-            if(n % i == 0){
-                res.push_back(i);
-                if(i != n/i){
-                    res.push_back(n/i);
+        int count = 0;
+        for (int i = 1; i <= n; i++) {
+            if (n % i == 0) {
+                count++;
+                if (count == k) {
+                    return i;
                 }
             }
-        }
-        sort(res.begin(), res.end());
-        if(k <= res.size()){
-            return res[k-1];
         }
         return -1;
     }
