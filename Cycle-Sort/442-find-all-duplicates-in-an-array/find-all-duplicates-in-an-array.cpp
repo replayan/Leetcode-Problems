@@ -1,8 +1,8 @@
 class Solution {
 public:
     vector<int> findDuplicates(vector<int>& nums) {
-        int n = nums.size();
-        for(int i=0; i<n;){
+        int n = nums.size(), i=0;
+        while(i < n){
             int correctIndex = nums[i]-1;
             if(nums[i] != nums[correctIndex]){
                 swap(nums[i],nums[correctIndex]);
