@@ -7,18 +7,20 @@ using namespace std;
 class Solution {
 public:
     int find_median(vector<int> v) {
-       
+        // Sorting the array in ascending order
         sort(v.begin(), v.end());
 
         int n = v.size();
-        int mid = n / 2; 
+        int left = 0;
+        int right = n - 1;
+        int mid = left + (right - left) / 2; // Calculate the index of the middle element
 
         // If the array size is odd, the median is the middle element
         // If the array size is even, the median is the average of the middle two elements
         if (n % 2 == 1) {
             return v[mid];
         } else {
-            return (v[mid - 1] + v[mid]) / 2;
+            return (v[mid] + v[mid + 1]) / 2;
         }
     }
 };
