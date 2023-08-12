@@ -1,39 +1,20 @@
-// Boyer moore String match algorithm
+// Naive 
 
 class Solution {
 public:
     int strStr(string haystack, string needle) {
-        int haystackLen = haystack.length();
-        int needleLen = needle.length();
-
-        if (needleLen == 0) {
-            return 0;
-        }
-        if (haystackLen < needleLen) {
-            return -1;
-        }
-
-        vector<int> badChar(256, needleLen); 
-
-        for (int i = 0; i < needleLen - 1; ++i) {
-            badChar[needle[i]] = needleLen - 1 - i;
-        }
-
-        int i = needleLen - 1;
-        int j = needleLen - 1;
-
-        while (i < haystackLen) {
-            if (haystack[i] == needle[j]) {
-                if (j == 0) {
-                    return i; 
+        int m = haystack.size(), n = needle.size(), i, j;
+        
+        for (i = 0; i <= m - n; ++i) {
+            for (j = 0; j < n; ++j) {
+                if (haystack[i + j] != needle[j]) {
+                    break;
                 }
-                --i;
-                --j;
-            } else {
-                i += max(1, needleLen - j);  
-                j = needleLen - 1;
+            }
+            if (j == n) {
+                return i; 
             }
         }
-        return -1; 
+        return -1;
     }
 };
