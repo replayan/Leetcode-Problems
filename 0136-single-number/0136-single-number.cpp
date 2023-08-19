@@ -1,10 +1,21 @@
+// Brute force approach
+
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        int res=0;
-        for(int i=0;i<nums.size();++i){
-            res ^= nums[i];
+        int n=nums.size();
+        for(int i=0; i<n; i++){
+            bool duplicate=false;
+            for(int j=0; j<n; j++){
+                if(i != j && nums[j]==nums[i]){
+                    duplicate=true;
+                    break;
+                }
+            }
+            if(!duplicate){
+                return nums[i];
+            }
         }
-        return res;
+        throw invalid_argument("No single number found.");
     }
 };
