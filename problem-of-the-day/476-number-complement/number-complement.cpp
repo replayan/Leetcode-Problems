@@ -1,19 +1,10 @@
 class Solution {
 public:
     int findComplement(int num) {
-        if (num == 0)
-            return 1;
-
-        long long int mask = 1;
-        long long int temp = num;
-
-        while (temp > 0) {
-            mask <<= 1;
-            temp >>= 1;
+        long long int res = 1;
+        while (res <= num) {
+            res *= 2;
         }
-        mask -= 1;
-        // one's complement
-        int complement = num ^ mask;
-        return complement;
+        return res - 1 - num;
     }
 };
