@@ -1,12 +1,7 @@
 class MyStack {
 private:
-    vector<int> data;
-
+    vector<int> data; // to store stack data
 public:
-    // MyStack() {
-        
-    // }
-    
     void push(int x) {
         data.push_back(x); 
     }
