@@ -7,37 +7,33 @@ using namespace std;
 // } Driver Code Ends
 //User function template for C++
 
+
 class Solution
 {
-public:
-    // Function to return list containing first n fibonacci numbers from 1.
+    public:
+    //Function to return list containing first n fibonacci numbers.
     vector<long long> printFibb(int n) 
     {
-        vector<long long> fibonacci;
-        
-        if (n <= 0)
-            return fibonacci; // Return an empty vector for invalid input.
-
-        // The first Fibonacci number is 1.
-        fibonacci.push_back(1);
-        if (n == 1)
-            return fibonacci;
-
-        // The second Fibonacci number is 1.
-        fibonacci.push_back(1);
-        if (n == 2)
-            return fibonacci;
-
-        // Generate the remaining Fibonacci numbers.
-        for (int i = 2; i < n; i++) {
-            long long nextFibonacci = fibonacci[i - 1] + fibonacci[i - 2];
-            fibonacci.push_back(nextFibonacci);
+        //code here
+        vector<long long> fib;
+        if(n<=0){
+            return fib;
         }
-
-        return fibonacci;
+        fib.push_back(1);
+        if(n==1){
+            return fib;
+        }
+        fib.push_back(1);
+        if(n==2){
+            return fib;
+        }
+        for(int i=2; i<n; ++i){
+            long long fibo=fib[i-1]+fib[i-2];
+            fib.push_back(fibo);
+        }
+        return fib;
     }
 };
-
 
 //{ Driver Code Starts.
 int main()
