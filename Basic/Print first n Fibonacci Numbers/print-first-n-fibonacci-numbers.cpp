@@ -24,9 +24,6 @@ class Solution
             return fib;
         }
         fib.push_back(1);
-        if(n==2){
-            return fib;
-        }
         for(int i=2; i<n; ++i){
             long long fibo=fib[i-1]+fib[i-2];
             fib.push_back(fibo);
