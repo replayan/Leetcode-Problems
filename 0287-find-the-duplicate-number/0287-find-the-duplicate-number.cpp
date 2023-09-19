@@ -1,4 +1,8 @@
+/*
 // LC problem of the day
+
+cycle sort:->
+
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
@@ -16,5 +20,25 @@ public:
             }
         }
         return -1;
+    }
+};
+*/
+
+// fast & slow pointer :->
+
+class Solution{
+public:
+    int findDuplicate(vector<int>& nums){
+        int slow=0,fast=0;
+        do{
+            slow=nums[slow];
+            fast=nums[nums[fast]];
+        } while(slow!=fast);
+        slow=0; // reset the slow to detect meet point
+        while(slow!=fast){
+            slow=nums[slow];
+            fast=nums[fast];
+        }
+        return slow;
     }
 };
