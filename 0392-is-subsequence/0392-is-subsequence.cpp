@@ -10,10 +10,6 @@ public:
                 j++;
             }
         }
-        if(i==x){
-            return true;
-        } else{
-            return false;
-        }
+        return i==x;
     }
 };
