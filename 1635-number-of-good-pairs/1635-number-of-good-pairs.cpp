@@ -1,14 +1,14 @@
-// Hashmap Solution
-
 class Solution {
 public:
     int numIdenticalPairs(vector<int>& nums) {
-        unordered_map<int,int> elementFreq;
-        int goodPairCount = 0;
-        for(int i : nums){
-            goodPairCount += elementFreq[i];
-            elementFreq[i]++;
+        int gp=0;
+        for(int i=0; i<nums.size(); ++i){
+            for(int j=i+1; j<nums.size(); ++j){
+                if(nums[i]==nums[j]){
+                    gp++;
+                }
+            }
         }
-        return goodPairCount;
+        return gp;
     }
 };
