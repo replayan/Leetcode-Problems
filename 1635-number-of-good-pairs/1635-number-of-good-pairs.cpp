@@ -1,3 +1,4 @@
+/* Brute force
 class Solution {
 public:
     int numIdenticalPairs(vector<int>& nums) {
@@ -8,6 +9,18 @@ public:
                     gp++;
                 }
             }
+        }
+        return gp;
+    }
+};
+*/
+
+class Solution {
+public:
+    int numIdenticalPairs(vector<int>& nums) {
+        int arr[101]={0}, gp=0;
+        for(int n:nums){
+            gp+=arr[n]++;
         }
         return gp;
     }
