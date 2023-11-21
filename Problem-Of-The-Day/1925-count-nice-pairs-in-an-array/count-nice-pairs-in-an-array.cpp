@@ -1,6 +1,6 @@
 class Solution {
 private:
-    int rev(int x) {
+    int rev(int x) { // REVERSING NUMBER METHOD
         int reversed = 0;
         while (x != 0) {
             int digit = x % 10;
