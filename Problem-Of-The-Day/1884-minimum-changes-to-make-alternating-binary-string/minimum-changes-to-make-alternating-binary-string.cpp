@@ -1,23 +1,16 @@
 class Solution {
 public:
     int minOperations(string s) {
-        int n = s.length();
-        int count0 = 0, count1 = 0;
-        for (int i = 0; i < n; i++) {
+        int cunt0=0, cunt1=0;
+        for (int i=0; i < s.size(); ++i) {
             if (i % 2 == 0) {
-                if (s[i] != '0') {
-                    count0++;
-                } else {
-                    count1++;
-                }
+                cunt0+=(s[i] != '0');
+                cunt1+=(s[i] != '1');
             } else {
-                if (s[i] != '1') {
-                    count0++;
-                } else {
-                    count1++;
-                }
+                cunt0+=(s[i] != '1');
+                cunt1+=(s[i] != '0');
             }
         }
-        return min(count0, count1);
+        return min(cunt0, cunt1);
     }
 };
