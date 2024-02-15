@@ -4,7 +4,7 @@
 
 ## 📜 Description
 
-This repository serves as a **personal development space** where I venture into the realms of algorithmic brilliance. I thrive on conquering a **diverse array of DSA problems** from platforms like **LeetCode**, forging my path towards ***programming mastery***. 🏆 My mission is to unravel complex algorithms and wield powerful data structures like a coding wizard! 🧙
+This repository serves as a **personal development space** where I venture into the realms of algorithmic brilliance. I thrive on conquering a **diverse array of DSA problems** from platforms like **LeetCode**, **GFG** forging my path towards ***programming mastery***. 🏆 My mission is to unravel complex algorithms and wield powerful data structures like a coding wizard! 🧙
 
 ## 💻 Languages Used
 
