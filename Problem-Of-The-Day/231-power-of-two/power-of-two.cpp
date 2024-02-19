@@ -17,6 +17,7 @@ public:
 };
 */
 // bit wise ops :
+/*
 class Solution {
 public:
     bool isPowerOfTwo(int n) {
@@ -24,5 +25,15 @@ public:
             return false;
         else
             return (n & (n - 1)) == 0;
+    }
+};
+*/
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        if (n <= 0)
+            return false;
+        else
+            return ((1 << 30) % n) == 0;
     }
 };
