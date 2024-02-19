@@ -1,3 +1,5 @@
+// Classic divide method tc : o(logN)
+/*
 class Solution {
 public:
     bool isPowerOfTwo(int n) {
@@ -11,5 +13,16 @@ public:
             n /= 2;
         }
         return true;
+    }
+};
+*/
+// bit wise ops :
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        if (n <= 0)
+            return false;
+        else
+            return (n & (n - 1)) == 0;
     }
 };
