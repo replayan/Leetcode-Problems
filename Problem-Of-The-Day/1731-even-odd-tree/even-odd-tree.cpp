@@ -1,36 +1,35 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
 class Solution {
-    bool isOdd(int x) {
-        return x & 1;
-    }
-    bool dfs(TreeNode* root, int dep, vector<int>& last) {
-        if (root == nullptr) {
-            return true;
-        }
-        if (isOdd(dep)) {
-            if (isOdd(root->val) || (last[dep] > 0 && last[dep] <= root->val)) {
-                return false;
-            }
-        } else if (!isOdd(root->val) || last[dep] >= root->val) {
-            return false;
-        }
-        last[dep] = root->val;
-        return dfs(root->left, dep + 1, last) && dfs(root->right, dep + 1, last);
-    }
 public:
     bool isEvenOddTree(TreeNode* root) {
-        vector<int> last(100005);
-        return dfs(root, 0, last);
-        
+        queue<TreeNode*> q;
+        q.push(root);
+        bool evenLvl = true;
+        while (!q.empty()) {
+            int n = q.size(), prev;
+            if (evenLvl) {
+                prev = INT_MIN;
+            } else {
+                prev = INT_MAX;
+            }
+            while (n--) {
+                TreeNode* curr = q.front();
+                q.pop();
+                if (evenLvl && (curr->val % 2 == 0 || curr->val <= prev)) {
+                    return false;
+                }
+                if (!evenLvl && (curr->val % 2 != 0 || curr->val >= prev)) {
+                    return false;
+                }
+                prev = curr->val;
+                if (curr->left) {
+                    q.push(curr->left);
+                }
+                if (curr->right) {
+                    q.push(curr->right);
+                }
+            }
+            evenLvl = !evenLvl;
+        }
+        return true;
     }
 };
