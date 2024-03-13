@@ -1,24 +1,20 @@
+// simple o(n^2) solution
 class Solution {
 public:
     int pivotInteger(int n) {
-        int sum = 0;
-        int leftSum = 0;
-        int rightSum = 0;
-
-        for (int i = 1; i <= n; i++) {
-            sum += i;
-        }
-
-        // Iterate through digits to find the pivot integer
-        for (int i = 1; i <= n; i++) {
-            leftSum += i - 1;
-            rightSum = sum - leftSum - i;
-
-            if (leftSum == rightSum) {
-                return i;
+        for (int p = 1; p <= n; ++p) {
+            int lSum = 0;
+            int rSum = 0;
+            for (int i = 1; i <= p; ++i) {
+                lSum += i;
+            }
+            for (int i = p; i <= n; ++i) {
+                rSum += i;
+            }
+            if (lSum == rSum) {
+                return p;
             }
         }
-
         return -1;
     }
 };
