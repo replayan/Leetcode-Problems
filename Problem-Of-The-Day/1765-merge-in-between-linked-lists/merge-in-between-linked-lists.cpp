@@ -4,7 +4,7 @@ public:
         ListNode* left = NULL;
         ListNode* right = list1;
         for (int i = 0; i <= b; ++i) {
-            if (i == a - 1) {
+            if (i == (a - 1)) {
                 left = right;
             }
             right = right->next;
