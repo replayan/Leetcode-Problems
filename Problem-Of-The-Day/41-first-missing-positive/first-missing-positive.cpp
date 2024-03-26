@@ -8,7 +8,7 @@ public:
                 nums[i] != nums[correct_index]) {
                 swap(nums[i], nums[correct_index]);
             } else {
-                i++;
+                ++i;
             }
         }
         for (int i = 0; i < nums.size(); ++i) {
