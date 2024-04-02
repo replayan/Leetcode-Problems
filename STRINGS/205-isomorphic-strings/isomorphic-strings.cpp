@@ -1,7 +1,6 @@
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-
         if (s.length() == t.length()) {
             vector<int> mp1(256, -1);
             vector<int> mp2(256, -1);
