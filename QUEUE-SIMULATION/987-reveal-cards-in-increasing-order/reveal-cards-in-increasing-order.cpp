@@ -2,12 +2,11 @@ class Solution {
 public:
     vector<int> deckRevealedIncreasing(vector<int>& deck) {
         sort(deck.begin(), deck.end());
-        int n = deck.size();
-        vector<int> res(n);
+        vector<int> res(deck.size());
         deque<int> q;
         
         // Initialize the deque with indices
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < deck.size(); ++i) {
             q.push_back(i);
         }
         
