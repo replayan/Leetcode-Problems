@@ -10,7 +10,7 @@ public:
                     count += 1;
             }
             if (count == i)
-                return i;
+                return i; // if array is special
         }
         return -1;
     }
