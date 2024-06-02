@@ -4,11 +4,11 @@ public:
         int left = 0;
         int right = size(s) - 1;
         while (left < right) {
-            if (s[right] != s[left]) {
-                swap(s[right], s[left]);
+            if (s[left] != s[right]) {
+                swap(s[left], s[right]);
             }
-            left++;
-            right--;
+            left += 1;
+            right -= 1;
         }
     }
 };
