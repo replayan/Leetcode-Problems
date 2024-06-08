@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool checkSubarraySum(vector<int>& nums, int k) {
-        unordered_set<int> st;
+        set<int> st;
         for (int p = 0, i = 0; i < nums.size(); ++i) {
             const int temp = (p + nums[i]) % k;
             if (st.count(temp)) {
@@ -11,6 +11,5 @@ public:
             p = temp;
         }
         return false;
-        
     }
 };
