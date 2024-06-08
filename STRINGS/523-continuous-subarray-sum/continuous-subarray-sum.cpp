@@ -1,14 +1,20 @@
 class Solution {
 public:
     bool checkSubarraySum(vector<int>& nums, int k) {
-        set<int> st;
-        for (int p = 0, i = 0; i < nums.size(); ++i) {
-            const int temp = (p + nums[i]) % k;
-            if (st.count(temp)) {
-                return true;
+        int n = nums.size();
+        unordered_map<int, int> remainderMap;
+        int sum = 0;
+        remainderMap[0] = -1;
+        for (int i = 0; i < n; ++i) {
+            sum += nums[i];
+            int remainder = k == 0 ? sum : sum % k;
+            if (remainderMap.count(remainder)) {
+                if (i - remainderMap[remainder] > 1) {
+                    return true;
+                }
+            } else {
+                remainderMap[remainder] = i;
             }
-            st.insert(p);
-            p = temp;
         }
         return false;
     }
