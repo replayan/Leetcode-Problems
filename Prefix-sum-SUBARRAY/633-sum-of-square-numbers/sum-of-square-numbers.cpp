@@ -8,9 +8,9 @@ public:
             if (c == sum) {
                 return true;
             } else if (sum < c) {
-                ++left;
+                left += 1;
             } else {
-                right--;
+                right -= 1;
             }
         }
         return false;
