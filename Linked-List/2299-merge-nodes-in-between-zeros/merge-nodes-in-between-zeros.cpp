@@ -1,6 +1,8 @@
 class Solution {
 public:
     ListNode* mergeNodes(ListNode* head) {
+
+        /*
         ListNode* dummy = new ListNode(0);
         ListNode* current = dummy;
         
@@ -28,5 +30,19 @@ public:
         }
         
         return dummy->next;
+        */
+
+        ListNode* curr = head;
+        while (curr->next) {
+            ListNode* node = curr->next;
+            curr = curr->next;
+            while (curr->next->val != 0) {
+                node->val += curr->next->val;
+                curr = curr->next;
+            }
+            curr = curr->next;
+            node->next = curr->next;
+        }
+        return head->next;
     }
 };
