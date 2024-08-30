@@ -11,8 +11,8 @@ class Solution {
             }
         }
     }
-    
-    vector<int> spfa(int n, int s, const vector<vector<pair<int, int>>> &con) {
+
+    vector<int> spfa(int n, int s, const vector<vector<pair<int, int>>>& con) {
         vector<int> d(n, -1);
         vector<bool> mark(n);
         d[s] = 0;
@@ -38,9 +38,11 @@ class Solution {
     }
 
 public:
-    vector<vector<int>> modifiedGraphEdges(int n, vector<vector<int>>& edges, int source, int destination, int target) {
+    vector<vector<int>> modifiedGraphEdges(int n, vector<vector<int>>& edges,
+                                           int source, int destination,
+                                           int target) {
         vector<int> ind;
-        for (int i = 0; i < edges.size(); ++i) { 
+        for (int i = 0; i < edges.size(); ++i) {
             if (edges[i][2] < 0) {
                 ind.push_back(i);
             }
@@ -50,7 +52,7 @@ public:
             const int mid = (left + right) >> 1;
             vector<vector<pair<int, int>>> con(n);
             int m = mid;
-            for (const auto & e : edges) {
+            for (const auto& e : edges) {
                 int w = e[2];
                 if (e[2] < 0) {
                     if (m <= 0) {
@@ -58,11 +60,11 @@ public:
                     }
                     --m;
                     w = 1;
-                }   
+                }
                 con[e[0]].push_back({e[1], w});
                 con[e[1]].push_back({e[0], w});
             }
-            const vector<int> &d1 = spfa(n, source, con);
+            const vector<int>& d1 = spfa(n, source, con);
             if (d1[destination] == target) {
                 finalize(mid, edges);
                 return edges;
@@ -71,15 +73,17 @@ public:
                 right = mid - 1;
                 continue;
             }
-            const vector<int> &d2 = spfa(n, destination, con);
+            const vector<int>& d2 = spfa(n, destination, con);
             for (int t = mid; t < ind.size(); ++t) {
                 const int i = ind[t];
-                if (d1[edges[i][0]] >= 0 && d2[edges[i][1]] >= 0 && d1[edges[i][0]] + d2[edges[i][1]] < target) {
+                if (d1[edges[i][0]] >= 0 && d2[edges[i][1]] >= 0 &&
+                    d1[edges[i][0]] + d2[edges[i][1]] < target) {
                     edges[i][2] = target - (d1[edges[i][0]] + d2[edges[i][1]]);
                     finalize(mid, edges);
                     return edges;
                 }
-                if (d1[edges[i][1]] >= 0 && d2[edges[i][0]] >= 0 && d1[edges[i][1]] + d2[edges[i][0]] < target) {
+                if (d1[edges[i][1]] >= 0 && d2[edges[i][0]] >= 0 &&
+                    d1[edges[i][1]] + d2[edges[i][0]] < target) {
                     edges[i][2] = target - (d1[edges[i][1]] + d2[edges[i][0]]);
                     finalize(mid, edges);
                     return edges;
@@ -87,7 +91,7 @@ public:
             }
             left = mid + 1;
         }
-        
+
         return {};
     }
 };
