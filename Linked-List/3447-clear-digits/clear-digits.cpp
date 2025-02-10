@@ -1,18 +1,21 @@
 class Solution {
 public:
     string clearDigits(string s) {
-        string result;
-        for (char c : s) {
-            if (isdigit(c)) {
-                // When a digit is encountered, remove the last character if available.
-                if (!result.empty()) {
-                    result.pop_back();
+        int j = 0; // 'j' acts as the stack pointer.
+        for (int i = 0; i < s.size(); ++i) {
+            char c = s[i];
+            // Instead of using isdigit(c), we use a direct range check.
+            if (c >= '0' && c <= '9') {
+                if (j > 0) {
+                    // "Pop" the last non-digit character.
+                    --j;
                 }
             } else {
-                // Otherwise, append the non-digit character.
-                result.push_back(c);
+                // "Push" the non-digit character onto our in-place stack.
+                s[j++] = c;
             }
         }
-        return result;
+        s.resize(j); // Resize the string to contain only the valid characters.
+        return s;
     }
 };
