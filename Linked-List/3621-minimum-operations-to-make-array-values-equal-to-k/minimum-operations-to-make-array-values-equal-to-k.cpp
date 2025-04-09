@@ -4,12 +4,12 @@ public:
         unordered_set<int> distinctGreaterThanK;
         for (int num : nums) {
             if (num < k) {
-                return -1; // Impossible if any element is less than k
+                return -1;
             }
             if (num > k) {
-                distinctGreaterThanK.insert(num); // Collect distinct values > k
+                distinctGreaterThanK.insert(num);
             }
         }
-        return distinctGreaterThanK.size(); // Number of operations
+        return distinctGreaterThanK.size();
     }
 };
