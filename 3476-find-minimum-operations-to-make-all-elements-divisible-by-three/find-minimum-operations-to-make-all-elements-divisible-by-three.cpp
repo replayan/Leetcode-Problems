@@ -11,6 +11,9 @@ public:
         // return min_ops;
 
         int minOps = 0;
-        for (int i : nums) if (i % 3) minOps += 1; return minOps;
+        for (int i : nums)
+            if (i % 3)
+                minOps += 1;
+        return minOps;
     }
 };
