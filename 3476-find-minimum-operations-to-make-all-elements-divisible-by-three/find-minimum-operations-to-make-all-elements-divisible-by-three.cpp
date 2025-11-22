@@ -5,7 +5,7 @@ public:
 
         for (int i = 0; i < size(nums); ++i) {
             if ((nums[i] % 3) != 0) {
-                total_ops += min(nums[i] % 3, 3 - (nums[i] % 3));
+                total_ops += 1;
             }
         }
         return total_ops;
