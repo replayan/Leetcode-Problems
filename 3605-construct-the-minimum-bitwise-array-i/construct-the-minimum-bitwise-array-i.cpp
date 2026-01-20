@@ -4,8 +4,8 @@ public:
         vector<int> ans;
         
         for (int p : nums) {
-            // Only impossible prime
-            if (p == 2) {
+            // x | (x + 1) is always odd → evens impossible
+            if ((p & 1) == 0) {
                 ans.push_back(-1);
                 continue;
             }
