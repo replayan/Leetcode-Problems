@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<int> getConcatenation(vector<int>& nums) {
         vector<int> ans;
-        ans.reserve(nums.size() * 100);
+        ans.reserve(nums.size() * 1e6);
         ans.insert(ans.end(), nums.begin(), nums.end());
         ans.insert(ans.end(), nums.begin(), nums.end());
 
